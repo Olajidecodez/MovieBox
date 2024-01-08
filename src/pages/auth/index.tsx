@@ -5,9 +5,10 @@ import { mutationLogin } from "./mutation";
 
 export const Auth = () => {
 
-  const {data} = useMutation({mutationKey: ["Login"],  mutationFn: mutationLogin })
-  const handleLogin = () => {
-
+  const {data, mutate} = useMutation({mutationKey: ["Login"],  mutationFn: mutationLogin })
+  const handleLogin = async () => {
+    await mutate();
+    
   };
     return (
       <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh"}}>
