@@ -2,8 +2,6 @@ import { Button } from 'semantic-ui-react';
 import { useState } from 'react';
 import { useQuery } from 'react-query'
 import { ColumnDisplay } from "./column-display";
-
-
 import { fetchMovies, fetchTvShows } from "./query";
 
 export enum DisplayType {
@@ -11,9 +9,9 @@ export enum DisplayType {
   TvShows = "tvshows"
 };
 
- const { data: movieData, isLoading: isLoadingMovies } = useQuery({queryKey: ["movies"], queryFn: fetchMovies})
+ const { data: movieData, isLoading: isLoadingMovies } = useQuery(["movies"], fetchMovies);
 
- const { data: tvShowData, isLoading: isLoadingTvShows } = useQuery({queryKey: ["tvshows"], queryFn: fetchTvShows})
+ const { data: tvShowData, isLoading: isLoadingTvShows } = useQuery( ["tvshows"], fetchTvShows);
 
 export const Home = () => {
   const [displayType, setDisplayType] = useState<DisplayType>(
@@ -35,7 +33,7 @@ export const Home = () => {
           {displayType === DisplayType.Movies ? ( <ColumnDisplay data={movieData.results} displayType={DisplayType.Movies} /> 
           ) : ( 
           <ColumnDisplay data={tvShowData.results}  displayType={DisplayType.TvShows} />
-          )}
+          )} 
        </div>
        )}
     </div>
